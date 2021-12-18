@@ -1,0 +1,70 @@
+---
+name: Home Assistant CI
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: 0 12 * * *
+
+jobs:
+  home_assistant_stable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting your configuration from GitHub
+        uses: actions/checkout@v1
+        with:
+          path: 'custom_components/'
+      - name: Copy stub files into configuration folder
+        run: |
+          sudo mkdir -p /github/workspace/tmp
+          sudo touch fullchain.pem
+          sudo touch privkey.pem
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:stable"
+        with:
+          args: |
+            python -m homeassistant --version
+      - name: Home Assistant Check
+        uses: "docker://homeassistant/home-assistant:stable"
+        with:
+          args: python -m homeassistant --config  ./ --script check_config --info all
+  home_assistant_beta:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting your configuration from GitHub
+        uses: actions/checkout@v1
+      - name: Copy stub files into configuration folder
+        run: |
+          sudo mkdir -p /github/workspace/tmp
+          sudo touch fullchain.pem
+          sudo touch privkey.pem
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:beta"
+        with:
+          args: |
+            python -m homeassistant --version
+      - name: Home Assistant Check
+        uses: "docker://homeassistant/home-assistant:beta"
+        with:
+          args: python -m homeassistant --config ./ --script check_config --info all
+  home_assistant_rc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting your configuration from GitHub
+        uses: actions/checkout@v1
+      - name: Copy stub files into configuration folder
+        run: |
+          sudo mkdir -p /github/workspace/tmp
+          sudo touch fullchain.pem
+          sudo touch privkey.pem
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:rc"
+        with:
+          args: |
+            python -m homeassistant --version
+      - name: Home Assistant Check
+        uses: "docker://homeassistant/home-assistant:rc"
+        with:
+          args: python -m homeassistant --config ./ --script check_config --info all
