@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Getting your configuration from GitHub
         uses: actions/checkout@v1
-        path: 'custom_components/'
+        with:
+          path: 'custom_components/'
       - name: Copy stub files into configuration folder
         run: |
           cp -R travis_secrets.yaml secrets.yaml
