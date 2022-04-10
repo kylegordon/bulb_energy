@@ -81,8 +81,6 @@ query Tariffs($postcode: String!, $monthly: Boolean!, $legacyPrepay: Boolean!, $
 
 fragment StandardElectricityTariff on ResidentialElectricityStandardTariff {
   fuel
-  postcode
-  paymentMethod
   standingCharge
   unitRates {
     standard
@@ -93,8 +91,6 @@ fragment StandardElectricityTariff on ResidentialElectricityStandardTariff {
 
 fragment Eco7ElectricityTariff on ResidentialElectricityEconomy7Tariff {
   fuel
-  postcode
-  paymentMethod
   standingCharge
   unitRates {
     day
