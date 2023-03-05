@@ -1,3 +1,9 @@
+### DEPRECATED AND ARCHIVED
+
+Bulb Energy nearly collapsed and went into 'Special Administration' in late 2021. As of early 2023, all customers were being moved over to Octopus Energy.
+
+Consequently, this repository is now being archived. Use https://github.com/BottlecapDave/HomeAssistant-OctopusEnergy instead if you are now an Octopus Energy customer.
+
 ## About 
 
 A Home Assistant custom component to retrieve your current [Bulb Energy](http://bulb.co.uk) tariff, based on postcode and payment plan.
